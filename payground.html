@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Widget Test</title>
+</head>
+<body>
+  <!-- Inclua o script do widget -->
+  
+  <script src="./dist/index.iife.js"></script>
+
+  <!-- Inicialize o widget -->
+  <script>
+    window.mountWidget({
+      target: "body", // Onde o widget será inserido
+      message: "Bem-vindo ao widget Vue!", // Mensagem personalizada
+    });
+  </script>
+</body>
+</html>
