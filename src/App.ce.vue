@@ -1,35 +1,64 @@
 <script setup>
 import PrimeButton from "primevue/button";
 import PrimeTag from "primevue/tag";
+import { defineProps, ref } from "vue";
 
 const props = defineProps({
   message: String,
 });
 
+const successMessage = ref("");
+const errorMessage = ref("");
+
+const handleSuccess = () => {
+  successMessage.value = "Operation successful!";
+  errorMessage.value = "";
+};
+
+const handleCancel = () => {
+  errorMessage.value = "Operation cancelled!";
+  successMessage.value = "";
+};
 </script>
 <template>
-  <div class="bg-surface-50 dark:bg-surface-950 px-6 py-8 md:px-12 lg:px-20">
-    <div class="grid grid-cols-12 gap-4">
-      <div class="col-span-12 md:col-span-6 lg:col-span-3">
-        <div class="bg-surface-0 dark:bg-surface-900 shadow p-4 rounded-border">
-          <div class="flex justify-between mb-4">
-            <div>
-              <span class="block text-surface-500 dark:text-surface-300 font-medium mb-4">
-                {{ props.message }}
-              </span>
-              <div class="text-surface-900 dark:text-surface-0 font-medium !text-xl">
-                1521
-              </div>
-              <PrimeButton label="View Details" icon="pi pi-angle-right" severity="primary" />
-              <PrimeTag value="New" severity="success" />
-            </div>
-            <div class="flex items-center justify-center bg-blue-100 dark:bg-blue-400/30 rounded-border w-10 h-10">
-              <i class="pi pi-shopping-cart text-blue-500 dark:text-blue-200 !text-xl" />
-            </div>
-          </div>
-          <span class="text-green-500 font-medium">24 new </span>
-          <span class="text-surface-500 dark:text-surface-300">since last visit</span>
-        </div>
+  <div class="flex justify-center items-center h-screen">
+    <div
+      class="p-4 shadow-lg rounded-lg bg-white"
+      style="
+        width: 300px;
+        height: 200px;
+        border-radius: 15px;
+        background-color: #f3f4f6;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      "
+    >
+      <div class="flex justify-between items-center mb-4">
+        <PrimeButton
+          label="Success"
+          icon="pi pi-check"
+          class="p-button-success"
+          @click="handleSuccess"
+        />
+        <PrimeButton
+          label="Cancel"
+          icon="pi pi-times"
+          class="p-button-danger"
+          @click="handleCancel"
+        />
+      </div>
+      <PrimeTag
+        v-if="successMessage"
+        :value="successMessage"
+        class="p-tag-success"
+      />
+      <PrimeTag
+        v-if="errorMessage"
+        :value="errorMessage"
+        class="p-tag-danger"
+      />
+      <div class="text-center mt-4">
+        <p class="text-sm text-gray-600">Credit Card</p>
+        <p class="font-bold text-xl">**** **** **** 1234</p>
       </div>
     </div>
   </div>
