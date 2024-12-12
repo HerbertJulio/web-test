@@ -7,7 +7,7 @@ import "azion-theme";
 import PrimeVue from "primevue/config";
 import App from "./App.ce.vue";
 
-const app = createApp(App, { message: "default 123" });
+const app = createApp(App, { message: "yarn dev" });
 
 app.use(PrimeVue);
 app.mount("#app");

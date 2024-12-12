@@ -1,12 +1,16 @@
 <script setup>
 import PrimeButton from "primevue/button";
 import PrimeTag from "primevue/tag";
+import Calendar from "primevue/calendar";
 import { defineProps, ref } from "vue";
 
 const props = defineProps({
   message: String,
 });
 
+const buttondisplay = ref();
+const icondisplay = ref();
+const templatedisplay = ref();
 const successMessage = ref("");
 const errorMessage = ref("");
 
@@ -21,7 +25,7 @@ const handleCancel = () => {
 };
 </script>
 <template>
-  <div class="flex justify-center items-center h-screen">
+  <div class="flex justify-center items-center h-screen flex-col gap-6">
     <div
       class="p-4 shadow-lg rounded-lg bg-white"
       style="
@@ -32,6 +36,7 @@ const handleCancel = () => {
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       "
     >
+      <h1 class="text-center font-bold mb-4">{{ props.message }}</h1>
       <div class="flex justify-between items-center mb-4">
         <PrimeButton
           label="Success"
@@ -59,6 +64,47 @@ const handleCancel = () => {
       <div class="text-center mt-4">
         <p class="text-sm text-gray-600">Credit Card</p>
         <p class="font-bold text-xl">**** **** **** 1234</p>
+      </div>
+    </div>
+    <div class="card flex flex-wrap gap-3 p-fluid">
+      <div class="flex-auto">
+        <label for="buttondisplay" class="font-bold block mb-2"> Button </label>
+        <Calendar
+          v-model="buttondisplay"
+          showIcon
+          :showOnFocus="false"
+          inputId="buttondisplay"
+        />
+      </div>
+      <div class="flex-auto">
+        <label for="icondisplay" class="font-bold block mb-2">
+          Default Icon
+        </label>
+        <Calendar
+          v-model="icondisplay"
+          showIcon
+          iconDisplay="input"
+          inputId="icondisplay"
+        />
+      </div>
+      <div class="flex-auto">
+        <label for="templatedisplay" class="font-bold block mb-2">
+          Custom Icon
+        </label>
+        <Calendar
+          v-model="templatedisplay"
+          showIcon
+          iconDisplay="input"
+          timeOnly
+          inputId="templatedisplay"
+        >
+          <template #inputicon="{ clickCallback }">
+            <InputIcon
+              class="pi pi-clock cursor-pointer"
+              @click="clickCallback"
+            />
+          </template>
+        </Calendar>
       </div>
     </div>
   </div>

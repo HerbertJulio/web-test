@@ -3,6 +3,7 @@ import "primeicons/primeicons.css";
 import "primeflex/primeflex.css";
 import "./assets/main.css";
 import "azion-theme";
+import PrimeVue from "primevue/config";
 
 import App from "./App.ce.vue";
 
@@ -19,5 +20,8 @@ window.mountWidget = (options) => {
   document.querySelector(target).appendChild(parentContainer);
 
   const app = createApp(App, { message });
+
+  app.use(PrimeVue);
+
   app.mount("#my-widget-container");
 };

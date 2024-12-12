@@ -6,7 +6,9 @@ import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
 export default defineConfig({
   plugins: [vue(), cssInjectedByJsPlugin()],
   define: {
-    "process.env": {},
+    "process.env": {
+      NODE_ENV: "production",
+    },
   },
   resolve: {
     alias: {
