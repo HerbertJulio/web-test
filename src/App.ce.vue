@@ -2,7 +2,20 @@
 import PrimeButton from "primevue/button";
 import PrimeTag from "primevue/tag";
 import Calendar from "primevue/calendar";
-import { defineProps, ref } from "vue";
+import { defineProps, ref, defineCustomElement } from "vue";
+import "azion-theme/widget";
+
+defineCustomElement({
+  components: {
+    PrimeButton,
+    PrimeTag,
+    Calendar,
+  },
+});
+
+customElements.define("prime-button", PrimeButton);
+customElements.define("prime-tag", PrimeTag);
+customElements.define("calendar", Calendar);
 
 const props = defineProps({
   message: String,
@@ -25,7 +38,9 @@ const handleCancel = () => {
 };
 </script>
 <template>
-  <div class="flex justify-center items-center h-screen flex-col gap-6">
+  <div
+    class="flex justify-center items-center h-screen flex-col gap-6 azion azion-light"
+  >
     <div
       class="p-4 shadow-lg rounded-lg bg-white"
       style="
@@ -109,3 +124,8 @@ const handleCancel = () => {
     </div>
   </div>
 </template>
+<style>
+@import "primeicons/primeicons.css";
+@import "primeflex/primeflex.css";
+@import "./assets/main.css";
+</style>
